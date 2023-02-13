@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "@/components/header";
 import { Window, WindowContent, WindowHeader } from "react95";
+import isMobile from "@/hooks/isMobile";
 
 const FlexBody = styled.div`
   display: flex;
@@ -18,6 +19,8 @@ export type LayoutProps = React.PropsWithChildren<{
 }>;
 
 export default function Layout({ title, big, children }: LayoutProps) {
+  const mobile = isMobile();
+
   return (
     <FlexBody>
       <Header />
@@ -33,7 +36,13 @@ export default function Layout({ title, big, children }: LayoutProps) {
             width: "100%",
           }}
         >
-          <WindowHeader style={big ? { fontSize: "1.6rem" } : {}}>
+          <WindowHeader
+            style={
+              big
+                ? { fontSize: "1.6rem", height: mobile ? "200%" : "100%" }
+                : {}
+            }
+          >
             {title ? title : "Low Level Boris"}
           </WindowHeader>
           <WindowContent>{children}</WindowContent>

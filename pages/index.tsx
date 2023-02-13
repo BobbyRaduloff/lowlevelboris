@@ -96,7 +96,9 @@ export default function Index({ allPostData }: Props) {
             >
               Shameless TikTok Plug
             </h2>
-            <TikTokCreator src="https://tiktok.com/embed/@lowlevelboris" />
+            <div style={{ maxWidth: "780px", overflow: "scroll" }}>
+              <TikTokCreator src="https://tiktok.com/embed/@lowlevelboris" />
+            </div>
           </>
         )}
       </Layout>

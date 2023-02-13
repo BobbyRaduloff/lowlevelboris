@@ -126,6 +126,8 @@ const Content = styled.div`
 
   pre > code {
     display: block;
+    max-width: 100%;
+    overflow: scroll;
   }
 
   em {
@@ -180,6 +182,8 @@ const Content = styled.div`
 
   img {
     display: block;
+    height: auto;
+    max-width: 100%;
   }
 `;
 
