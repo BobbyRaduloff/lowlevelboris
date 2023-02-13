@@ -22,6 +22,19 @@ export default function Document() {
           sizes="16x16"
           href="/favicons/favicon-16x16.png"
         />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link
+          rel="preload"
+          href="/fonts/ms_sans_serif.woff2"
+          as="font"
+          type="font/woff2"
+        />
+        <link
+          rel="preload"
+          href="/fonts/ms_sans_serif_bold.woff2"
+          as="font"
+          type="font/woff2"
+        />
       </Head>
       <body>
         <Main />

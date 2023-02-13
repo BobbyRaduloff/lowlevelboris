@@ -47,13 +47,13 @@ export default function Index({ allPostData }: Props) {
             Hi there, my name is Boris Radulov and I&apos;m the creator of the
             &quot;Low Level Boris&quot; TikTok channel and blog. You can read
             more about me&nbsp;
-            <StyledLink href="/about">here</StyledLink>. I&apos;m passionate
-            about making software engineering accessible and entertaining to
-            all. This blog serves to I aim to provide a deeper dive into the
-            topics I cover in my TikTok videos, from web development to graphics
-            and security. I&apos;ll also be providing code samples and links to
-            GitHub repositories for everything I post. If you like the iconic
-            Windows 95 design, feel free to star&nbsp;
+            <StyledLink href="/about">on the about page</StyledLink>. I&apos;m
+            passionate about making software engineering accessible and
+            entertaining to all. This blog serves to I aim to provide a deeper
+            dive into the topics I cover in my TikTok videos, from web
+            development to graphics and security. I&apos;ll also be providing
+            code samples and links to GitHub repositories for everything I post.
+            If you like the iconic Windows 95 design, feel free to star&nbsp;
             <Anchor href="https://github.com/react95-io/React95">
               React95
             </Anchor>
@@ -62,7 +62,7 @@ export default function Index({ allPostData }: Props) {
             <br /> <br />
             You can find the source code for this blog&nbsp;
             <Anchor href="https://github.com/BobbyRaduloff/lowlevelboris">
-              here
+              on my GitHub
             </Anchor>
             . Go check it out, it&apos;s seriously cool. It generates static web
             pages from markdown with NextJS.

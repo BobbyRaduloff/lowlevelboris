@@ -12,12 +12,14 @@ const GlobalStyles = createGlobalStyle`
     src: url('/fonts/ms_sans_serif.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
   }
   @font-face {
     font-family: "MS Sans Serif";
     src: url('/fonts/ms_sans_serif_bold.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
   }
   body {
     font-family: "MS Sans Serif", sans-serif;
