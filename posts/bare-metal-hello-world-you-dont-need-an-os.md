@@ -9,7 +9,7 @@ date: 2023-02-13
 
 # Introduction
 We all remember the first time we made a terminal print out those blissful words by ourselves.
-It"s what got us on this journey as developers in the first place and so it holds a special place in our hearts.
+It's what got us on this journey as developers in the first place and so it holds a special place in our hearts.
 I like revisiting such moments and seeing what more can be learned from them.
 This usually involves doing something simple from your "junior dev years" with some extra constraints such as:
 
@@ -23,7 +23,7 @@ that gets executed directly by the CPU and does not need an operating system to 
 # Operating System?
 Before we do though, let's talk realy briefly about why our regular programs need an OS to work.
 In short, operating systems abstract away dealing with hardware so that we can focus on what
-our code should do and not so much how it should tell the CPU to do it.
+our code should do and not so much how it should work. 
 For example, the C standard-library function `printf` relies on the opearting system to actually
 write to the terminal. The operating system exposed the `write` system call to the developers of the
 C standard library and they've exposed part of it to you through the `printf` family of functions.
@@ -31,22 +31,22 @@ C standard library and they've exposed part of it to you through the `printf` fa
 
 For all of this to work as smoothly as it does, your operating system contains millions of lines of code
 (not joking, [Linux is around ~8mil](https://docs.kernel.org/process/1.Intro.html)) that handle all the 
-minutia such as mapping memory, figuring out where to write you string, etc. But what if you want to do it yourself?
+minutia such as mapping memory, figuring out where to write your string, etc. But what if you want to do it yourself?
 
 # Setup: a bit involved
 To print "hello world" entirely on our own, we can utilise the fact that a lot of the information about how
 computers boot into OSes is freely available on the internet and fairly standardised. We can essentially write a bunch of code
 that is intended to run as if it is the operating system. Obviously, our small example will not be an actual operating system, but,
-crucially, it will have the same level of access to the underlying hardware as an actuall OS would.
+crucially, it will have the same level of access to the underlying hardware as an actual OS would.
 
 ## BIOS and Booting
 When a computer turns on, the first code that gets executed is something called the BIOS or (basic input/output system) which is usually
 burned on a flash rom inside your motherboard. It's job is to provide the bare essential functionality of letting you choose a boot disk,
-and loading your operating system. Once it has done that, it passes it's work to the bootloader.
+and loading your operating system. Once it has done that, it passes execution to the bootloader.
 
 The bootloader is usually in stages. Since it has to fit in 512 bytes for legacy reasons, it will usually use those 512 bytes to
-find a stage two more advanced bootloader and pass execution onto that. However, since our code will definitely fit in 512 bytes,
-we can actually write out our example in this stage one of the bootloader.
+find a "stage two" more advanced bootloader and pass execution onto that. However, since our code will definitely fit in 512 bytes,
+we can actually write out our example in this "stage one" of the bootloader.
 
 ## Virtualisation and compilation
 You could run this experiment by compiling your code to an image, burning it to a USB, and rebooting your computer to run said USB on boot
@@ -66,6 +66,8 @@ Here's your starting point code:
 org 0x7c00     ;; BIOS jumps here upon boot
 bits 16        ;; 16-bit mode
 
+;; <code here>
+
 ;; Dummy Partition Table so that the bios doesn't complain
 ;;      and https://en.wikipedia.org/wiki/Master_boot_record)
 times 446 - ($ - $$) db 0
@@ -84,13 +86,13 @@ setting up virtual memory and we don't really need that for "hello world".
 We also need to provide a dummy partition table so that the BIOS recognizes that the disk which we're running on actually has executable code on it.
 We do this by setting bytes in the executable to specific values that essentially add an MBR to it. 
 Consider this boilerplate but it's still nice to understand, so I would recommend giving [this](https://en.wikipedia.org/wiki/Master_boot_record)
-to understand what these bytes actually mean.
+a read to understand what these bytes actually mean.
 Anything written after the third line will get executed directly by the CPU. 
 
 # Drawing to the screen
 To draw to the screen, we need to set the display mode. Since many bootloaders are graphical (think GRUB when you dual boot), the BIOS provides a few
 drawing modes that are handled by the CPU and don't require a GPU driver (or a GPU, lol).
-The following code tells the BIOS that we want a 80x25 character 16-color terminal screen. In this mode, each of the aforementioned 2000 characters
+The following code tells the BIOS that we want a 80x25 character 16-color terminal screen. In this mode, each of the aforementioned 2000 (80x25) characters
 on the screen are expressed with two bytes: one for the ASCII character and one for the color of the cell.
 ```
 ;; Set the video mode to 80x25 text mode
@@ -138,7 +140,7 @@ loop_welcome:
 We utilize a few registers to print our message, namely `ax`, `es`, `si`, and `di`.
 `ax` is what is known as a general purpose register. Think of it as a 16 bit variable directly in your CPU.
 You can also split it into the bytes that make it up: `ah` for the higher byte and `al` for the lower one.
-The `es` register is a data segment register which we will use to manipulate our strings which.
+The `es` register is a data segment register which we will use to manipulate our strings.
 The `di` and `si` registers are esentially indexes that mark where in our string we are and where in our output we should place it.
 
 Let's walk through the code step by step.
@@ -150,7 +152,7 @@ Let's walk through the code step by step.
 6. We load the character at the address of the current source index (the source is the message).
 7. We use the store byte instruction which takes `al` and places it into `es` + `di` (our screen memory + where we are on the screen). It also increments `di` automatically because we cleared the direction flag earlier.
 8. We make the next byte the color red. Remember, each cell of our output is two bytes, a character and a color. For the available colors, check [here](https://www.plantation-productions.com/Webster/www.artofasm.com/DOS/ch23/CH23-1.html).
-9. We manually move to the next byte in our screen because `mov` doesn't do that for us, unlike stosb.
+9. We manually move to the next byte in our screen because `mov` doesn't do that for us, unlike `stosb`.
 10. We also manually move to the next character of the string.
 11. We check if we've reached the end of the string i.e. if current byte is zero, and we jump back to the start of the loop if it isn't.
 
