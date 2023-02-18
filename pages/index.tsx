@@ -15,7 +15,7 @@ const TikTokCreator = styled.iframe`
 `;
 
 export async function getStaticProps() {
-  const allPostData = getSortedPostData().slice(0, 3);
+  const allPostData = getSortedPostData().slice(0, 1);
 
   return {
     props: {
@@ -68,7 +68,17 @@ export default function Index({ allPostData }: Props) {
             pages from markdown with NextJS.
           </p>
           <h2 style={{ fontSize: "1.8rem", fontWeight: "bold" }}>
-            Latest Posts
+            &quot;I&apos;m here for the JavaScript raytracer. Where&apos;s the
+            code?
+          </h2>
+          <p style={{ fontSize: "1.1" }}>
+            Here&apos;s the&nbsp;
+            <Anchor href="https://github.com/BobbyRaduloff/js_rtc">
+              GitHub repository
+            </Anchor>
+          </p>
+          <h2 style={{ fontSize: "1.8rem", fontWeight: "bold" }}>
+            Latest Post
           </h2>
           <ul style={{ listStyleType: "disc" }}>
             {allPostData.map((post) => (
