@@ -69,7 +69,7 @@ export default function Index({ allPostData }: Props) {
           </p>
           <h2 style={{ fontSize: "1.8rem", fontWeight: "bold" }}>
             &quot;I&apos;m here for the JavaScript raytracer. Where&apos;s the
-            code?
+            code?&quot;
           </h2>
           <p style={{ fontSize: "1.1" }}>
             Here&apos;s the&nbsp;
