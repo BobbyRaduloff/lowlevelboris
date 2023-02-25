@@ -45,11 +45,13 @@ export default function Nutshell() {
       setError(
         error ? error : "Something went wrong. Please try again later..."
       );
+      setSuccess("");
       return;
     }
 
     setEmail("");
     setSuccess("Thanks for signing up!");
+    setError("");
   };
 
   return (
