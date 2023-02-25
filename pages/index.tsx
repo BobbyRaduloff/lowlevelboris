@@ -68,14 +68,13 @@ export default function Index({ allPostData }: Props) {
             pages from markdown with NextJS.
           </p>
           <h2 style={{ fontSize: "1.8rem", fontWeight: "bold" }}>
-            &quot;I&apos;m here for the JavaScript raytracer. Where&apos;s the
-            code?&quot;
+            Nutshell: AI-driven Email Summary App
           </h2>
-          <p style={{ fontSize: "1.1" }}>
-            Here&apos;s the&nbsp;
-            <Anchor href="https://github.com/BobbyRaduloff/js_rtc">
-              GitHub repository
-            </Anchor>
+          <p style={{ fontSize: "1.1rem" }}>
+            I&apos;m currently working on a project called Nutshell. It&apos;s a
+            mobile app that uses GPT3 to summarize emails and save you time.
+            Sign up for the&nbsp;
+            <StyledLink href="/nutshell">waitlist here</StyledLink>.
           </p>
           <h2 style={{ fontSize: "1.8rem", fontWeight: "bold" }}>
             Latest Post
