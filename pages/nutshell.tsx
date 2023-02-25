@@ -73,7 +73,7 @@ export default function Nutshell() {
             <Anchor href="https://www.linkedin.com/in/mitev-nikolay/">
               Nikolay Mitev
             </Anchor>
-            . If you want to use it when it's ready, please sign up for the
+            . If you want to use it when it&apos;s ready, please sign up for the
             waitlist below.
           </p>
           <div
