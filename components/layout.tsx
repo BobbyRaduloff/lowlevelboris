@@ -5,10 +5,12 @@ import { Window, WindowContent, WindowHeader } from "react95";
 import isMobile from "@/hooks/isMobile";
 
 const FlexBody = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  max-width: 100%;
+  width: 100%;
   min-height: 100vh;
   background: ${({ theme }) => theme.desktopBackground};
 `;
