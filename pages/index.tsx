@@ -6,13 +6,6 @@ import { Anchor } from "react95";
 import { getSortedPostData } from "@/lib/posts";
 import type { Post } from "@/lib/posts";
 import dayjs from "dayjs";
-import styled from "styled-components";
-import isMobile from "@/hooks/isMobile";
-
-const TikTokCreator = styled.iframe`
-  width: 780px;
-  height: 456px;
-`;
 
 export async function getStaticProps() {
   const allPostData = getSortedPostData().slice(0, 1);
@@ -29,8 +22,6 @@ type Props = {
 };
 
 export default function Index({ allPostData }: Props) {
-  const mobile = isMobile();
-
   return (
     <div>
       <Head>
@@ -97,19 +88,6 @@ export default function Index({ allPostData }: Props) {
             ))}
           </ul>
         </div>
-
-        {!mobile && (
-          <>
-            <h2
-              style={{ fontSize: "1.8rem", fontWeight: "bold", marginTop: 12 }}
-            >
-              Shameless TikTok Plug
-            </h2>
-            <div style={{ maxWidth: "780px", overflow: "scroll" }}>
-              <TikTokCreator src="https://tiktok.com/embed/@lowlevelboris" />
-            </div>
-          </>
-        )}
       </Layout>
     </div>
   );
